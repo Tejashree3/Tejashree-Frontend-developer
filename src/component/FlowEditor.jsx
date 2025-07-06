@@ -22,19 +22,11 @@ const FlowEditor = () => {
     setEdges((eds) => addEdge({ ...params, animated: true }, eds));
 
   // Load initial layout
-  useEffect(() => {
+useEffect(() => {
     const savedNodes = localStorage.getItem("flow-nodes");
     const savedEdges = localStorage.getItem("flow-edges");
 
-    if (
-      savedNodes &&
-      savedEdges &&
-      savedNodes.length > 2 &&
-      savedEdges.length > 2
-    ) {
-      setNodes(JSON.parse(savedNodes));
-      setEdges(JSON.parse(savedEdges));
-    } else {
+   
       const rawNodes = pageHierarchy?.length
         ? pageHierarchy.map((page) => ({
             id: page.id,
@@ -68,7 +60,7 @@ const FlowEditor = () => {
           }))
         : [];
 
-      const rawEdges = pageHierarchy?.length
+            const rawEdges = pageHierarchy?.length
         ? pageHierarchy
             .filter((p) => p.parent)
             .map((p) => ({
@@ -91,8 +83,7 @@ const FlowEditor = () => {
 
       setNodes(layouted.nodes);
       setEdges(layouted.edges);
-    }
-  }, []);
+      }, []);
 
   // Persist to localStorage
   useEffect(() => {
